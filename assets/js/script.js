@@ -7,17 +7,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     for (const button of buttons) {
         button.addEventListener('click', function() {
-            if (this.getAttribute("data-type") === "submit") {
-                alert("You clicked Submit!");
+            if (this.getAttribute('data-type') === 'submit') {
+                alert('You clicked Submit!');
             } else {
-                const gameType = this.getAttribute("data-type");
+                const gameType = this.getAttribute('data-type');
                 alert(`You clicked ${gameType}`);
             }
         });
     }
 });
 
-function runGame() {
+/**
+ * The main game "loop", called when the script is first loaded
+ * and after the user's answer has been processed.
+ */
+ function runGame() {
+
+    // Creates two random numbers between 1 and 25.
+
+    const num1 = Math.floor(Math.random() * 25) + 1;
+    const num2 = Math.floor(Math.random() * 25) + 1;
 
 }
 
