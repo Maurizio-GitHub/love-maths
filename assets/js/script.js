@@ -1,14 +1,14 @@
-// Wait for the DOM to finish loading before running the game:
+// Waits for the DOM to finish loading before running the game:
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const buttons = document.getElementsByTagName('button');
 
-// Get the button elements and add event listeners to them:
+    // Gets the button elements and adds event listeners to them:
 
     for (const button of buttons) {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             if (this.getAttribute('data-type') === 'submit') {
-                alert('You clicked Submit!');
+                checkAnswer();
             } else {
                 const gameType = this.getAttribute('data-type');
                 runGame(gameType);
@@ -23,14 +23,14 @@ document.addEventListener('DOMContentLoaded', function() {
  * The main game "loop", called when the script is first loaded
  * and after the user's answer has been processed.
  */
- function runGame(gameType) {
+function runGame(gameType) {
 
     // Creates two random numbers between 1 and 25:
 
     const num1 = Math.floor(Math.random() * 25) + 1;
     const num2 = Math.floor(Math.random() * 25) + 1;
 
-    // Check which one of the math games is running and call the relevant function:
+    // Checks which one of the math games is running and call the relevant function:
 
     if (gameType === 'addition') {
         displayAdditionQuestion(num1, num2);
@@ -40,12 +40,51 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 }
 
-function checkAnswer() {
+/**
+ * Checks the user's answer agaist the calculated answer,
+ * which is the first element in the returned calculateCorrectAnswer() array.
+ */
+ function checkAnswer() {
 
+    // Parses the acquired user's answer as a number before comparison:
+
+    let userAnswer = parseInt(document.getElementById('answer-box').value);
+    let calculatedAnswer = calculateCorrectAnswer();
+    let isCorrect = userAnswer === calculatedAnswer[0];
+
+    // Provides feedback to users about their answer:
+
+    if (isCorrect) {
+        alert('Hey! You got it right! :D');
+    } else {
+        alert(`Awwww... you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`);
+    }
+
+    // Keeps running a math game of the same type, which is given by the second element of the returned calculateCorrectAnswer() array:
+
+    runGame(calculatedAnswer[1]);
 }
 
+/**
+ * Gets the operands and the operator directly from the DOM
+ * and returns the correct answer.
+ */
 function calculateCorrectAnswer() {
 
+    // Parses the acquired values as numbers:
+
+    const operand1 = parseInt(document.getElementById('operand1').innerText);
+    const operand2 = parseInt(document.getElementById('operand2').innerText);
+    const operator = document.getElementById('operator').innerText;
+
+    // Determins which math operation is running by the acquired operator and keeps running with the same (returned) operator until users choose otherwise:
+
+    if (operator === '+') {
+        return [operand1 + operand2, 'addition'];
+    } else {
+        alert(`Unimplemented operator ${operator}`);
+        throw `Unimplemented operator ${operator}. Aborting!`;
+    }
 }
 
 function incrementScore() {
@@ -61,13 +100,13 @@ function displayAdditionQuestion(operand1, operand2) {
     document.getElementById('operand1').textContent = operand1;
     document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = '+';
-    
+
 }
 
 function displaySubtractQuestion() {
-    
+
 }
 
 function displayMultiplyQuestion() {
-    
+
 }
