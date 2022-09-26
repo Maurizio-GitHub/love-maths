@@ -1,0 +1,253 @@
+/* Global Style */
+
+body {
+    background-color: white;
+    color: #445361;
+    font-family: "Raleway", sans-serif;
+    text-align: center;
+}
+
+/* Heading */
+
+.heading {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.logo {
+    height: 40px;
+    padding-right: 5px;
+}
+
+/* Game Layout */
+
+.game-area {
+    background-color: #e6ecf0;
+    box-sizing: border-box;
+    height: 65vh;
+    margin: 0 auto;
+    max-height: 450px;
+    max-width: 830px;
+    padding: 1%;
+    width: 85%;
+}
+
+.question-area {
+    font-size: 2rem;
+    margin: auto;
+    padding: 50px 0;
+    width: 50%;
+}
+
+.question-area>span {
+    padding: 0 15px;
+}
+
+.score-area {
+    font-size: 1.2rem;
+    margin: 5px auto;
+    width: 60%;
+}
+
+.controls-area {
+    margin: 30px auto;
+    width: 85%;
+}
+
+#score {
+    color: green;
+    font-weight: bold;
+}
+
+#incorrect {
+    color: red;
+    font-weight: bold;
+}
+
+.answer-message {
+    display: none;
+    font-size: 1rem;
+}
+
+#answer-box {
+    border: none;
+    color: #445361;
+    display: inline-block;
+    font-size: 1.2rem;
+    height: 40px;
+    width: 80px;
+}
+
+.scores {
+    display: inline-block;
+    padding: 25px;
+}
+
+/* Buttons */
+
+.btn {
+    color: white;
+    font-family: "Raleway", sans-serif;
+    height: 60px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    width: 220px;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn-big {
+    background-color: white;
+    border: 10px solid;
+    border-radius: 50%;
+    font-size: 3.2rem;
+    height: 100px;
+    margin: 0 30px;
+    padding-top: 10px;
+    transition: all 0.5s;
+    width: 100px;
+}
+
+.btn-big::after {
+    content: attr(data-type);
+    font-size: 1rem;
+    color: #445361;
+    position: relative;
+    left: -0.5em;
+}
+
+.btn-blue {
+    border-color: blue;
+    color: blue;
+}
+
+.btn-blue:active,
+.btn-blue:hover {
+    background-color: darkblue;
+    color: white;
+}
+
+.btn-orange {
+    border-color: orange;
+    color: orange;
+}
+
+.btn-orange:active,
+.btn-orange:hover {
+    background-color: darkorange;
+    color: white;
+}
+
+.btn-red {
+    border-color: red;
+    color: red;
+}
+
+.btn-red:active,
+.btn-red:hover {
+    background-color: darkred;
+    color: white;
+}
+
+.btn-green {
+    border-color: green;
+    color: green;
+}
+
+.btn-green:active,
+.btn-green:hover {
+    background-color: darkgreen;
+    color: white;
+}
+
+.btn-gray {
+    background-color: #445361;
+    border: 1px transparent;
+    border-radius: 20px;
+    margin-top: 25px;
+}
+
+.btn-gray:active,
+.btn-gray:hover {
+    background-color: #0d1013;
+}
+
+/* Media Queries */
+
+@media (max-width: 414px) {
+    .controls-area {
+        width: 100%;
+    }
+
+    .btn-big {
+        border: 5px solid;
+        font-size: 1.5rem;
+        height: 50px;
+        margin: 0 10px;
+        padding: 5px;
+        width: 50px;
+    }
+
+    .btn-big::after {
+        font-size: 0.6rem;
+        left: -0.7rem;
+    }
+
+    .question-area {
+        padding: 10% 0;
+        width: 100%;
+    }
+
+    .question-area span {
+        padding: 0;
+    }
+
+    .answer-message {
+        display: block;
+    }
+
+    #answer-box {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .btn-gray {
+        margin-top: 0;
+    }
+
+    .score-area {
+        width: 100%;
+    }
+
+    .scores {
+        display: block;
+        margin: 0.5em auto;
+        padding: 5px;
+    }
+
+    .heading {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .game-area {
+        height: 70vh;
+    }
+
+    .controls-area {
+        margin: 10px auto;
+        width: 75%;
+    }
+
+    .btn-big {
+        margin: 10px 10px;
+    }
+
+    .question-area {
+        padding: 10px 0;
+    }
+
+}
