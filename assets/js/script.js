@@ -15,15 +15,30 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // Gives to users the possibility to submit their answers via pressing the Enter key as well:
+
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === 'Enter') {
+            checkAnswer();
+        }
+    });
+
+    // Default math game is addition:
+
     runGame('addition');
 });
-
 
 /**
  * The main game "loop", called when the script is first loaded
  * and after the user's answer has been processed.
  */
 function runGame(gameType) {
+
+    // Clears up the answer box and puts the focus (selection) on it:
+
+    document.getElementById('answer-box').value = '';
+    document.getElementById('answer-box').focus();
 
     // Creates two random numbers between 1 and 25:
 
@@ -126,7 +141,7 @@ function displayAdditionQuestion(operand1, operand2) {
 }
 
 /**
- * Performs a little manipulation on operators assignments in order to always display a question where 'operand1' > 'operand2'.
+ * Performs a little manipulation on operators assignments in order to always display a question where operand1 > operand2.
  */
 function displaySubtractQuestion(operand1, operand2) {
 
