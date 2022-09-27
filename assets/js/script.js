@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Gives to users the possibility to submit their answers via pressing the Enter key as well:
 
-    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+    document.getElementById("answer-box").addEventListener("keydown", function (event) {
         if (event.key === 'Enter') {
             checkAnswer();
         }
@@ -30,8 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /**
- * The main game "loop", called when the script is first loaded
- * and after the user's answer has been processed.
+ * The main game "loop", called when the script is first loaded and after the user's answer has been processed.
  */
 function runGame(gameType) {
 
@@ -54,16 +53,14 @@ function runGame(gameType) {
     } else if (gameType === 'subtract') {
         displaySubtractQuestion(num1, num2);
     } else {
-        alert(`Unknown game type: ${gameType}`);
-        throw `Unknown game type: ${gameType}. Aborting!`;
+        displayDivisionQuestion(num1, num2);
     }
 }
 
 /**
- * Checks the user's answer agaist the calculated answer,
- * which is the first element in the returned calculateCorrectAnswer() array.
+ * Checks the user's answer agaist the calculated answer, which is the first element in the returned calculateCorrectAnswer() array.
  */
- function checkAnswer() {
+function checkAnswer() {
 
     // Parses the acquired user's answer as a number before comparison:
 
@@ -87,8 +84,7 @@ function runGame(gameType) {
 }
 
 /**
- * Gets the operands and the operator directly from the DOM
- * and returns the correct answer.
+ * Gets the operands and the operator directly from the DOM and returns the correct answer.
  */
 function calculateCorrectAnswer() {
 
@@ -107,15 +103,14 @@ function calculateCorrectAnswer() {
     } else if (operator === '-') {
         return [operand1 - operand2, 'subtract'];
     } else {
-        alert(`Unimplemented operator ${operator}`);
-        throw `Unimplemented operator ${operator}. Aborting!`;
+        return [operand1 / operand2, "division"];
     }
 }
 
 /**
  * Gets the current score from the DOM and increments it by 1.
  */
- function incrementScore() {
+function incrementScore() {
 
     let oldScore = parseInt(document.getElementById('score').innerText);
     document.getElementById('score').innerText = ++oldScore;
@@ -156,5 +151,17 @@ function displayMultiplyQuestion(operand1, operand2) {
     document.getElementById('operand1').textContent = operand1;
     document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = 'x';
+
+}
+
+/**
+ * Performs a little manipulation on operators assignments in order to always display a question where
+ * operand1 is a multiple of operand2.
+ */
+function displayDivisionQuestion(operand1, operand2) {
+
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 - operand1 % operand2 : operand2 - operand2 % operand1;
+    document.getElementById('operand2').textContent = operand1 > operand2 ? operand2 : operand1;
+    document.getElementById('operator').textContent = '/';
 
 }
